@@ -1,0 +1,28 @@
+
+<div class="col-lg-12">
+   <div class="card text-center border border-danger">
+      <div class="card-header">
+         <h3 class="text-center text-danger">Ver Comic {{ comic.id }}</h3>
+         <strong>{{ comic.nameComic  | uppercase}}</strong>
+      </div>
+      <div class="card-body">
+         <img [src]="comic.url_img == '' ? '/assets/images/no-image-available.jpg' : comic.url_img" alt="" class="card-img-top" style="max-width: 200px; max-height: 600px;">
+         <h5 class="card-title text-danger"><--- {{ comic.nameComic }} ---></h5>
+         <p class="card-text">
+            Editorial : {{comic.editorial}}
+            -- Tematica : {{comic.topic}}
+            -- Colección : {{comic.collections}}
+            -- Número de páginas : {{comic.pages}}
+            -- Precio : {{comic.price | currency}}
+            -- Autores : {{comic.autors}}
+            -- Color : {{comic.color ? 'A color' : 'Blanco y negro'}}
+            -- Estado : {{comic.status}}
+            -- Cantidad : {{comic.amount}}
+         </p>
+         <a routerLink="/comics" class="btn btn-info btn-sm">Ver todos los comics</a>
+      </div>
+      <div class="card-footer text-muted">
+         Fecha Venta: {{ comic.lastSaleDate == null ? 'Este comic aun no se ha vendido' : comic.lastSaleDate | date }}
+      </div>
+      </div>
+</div>

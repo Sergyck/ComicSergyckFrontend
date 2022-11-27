@@ -1,0 +1,7 @@
+{
+   "/rest/*":{
+      "target": "http://localhost:8085/semillero-servicios/rest",
+      "secure": false,
+      "logLevel": "debug"
+   }
+}

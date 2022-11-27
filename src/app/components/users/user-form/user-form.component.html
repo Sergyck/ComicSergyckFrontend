@@ -1,0 +1,141 @@
+<div class="mt-1">
+   <form [formGroup]="gestionarUserForm">
+      <h1>Gestión Usuarios - {{ edit ? "Editar" : "Crear" }} Usuario</h1>
+      <div class="row">
+         <div class="col-lg-12" *ngIf="mostrarMensaje">
+            <div class="alert alert-success alert-dismissible fade show">
+               <a type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="cerrarAlert()">x</a>
+               <strong>Exitoso...!</strong> Se ha creado el Usuario correctamente.
+            </div>
+         </div>
+         <div class="col-lg-12 border-light">
+            <div class="row">
+               <div class="col-6 form-group">
+                  <label for="inputNombre">Nombre: </label>
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">
+                           <i class="fa-solid fa-mask"></i>
+                        </div>
+                     </div>
+                     <input type="text" class="form-control" id="inputNombre" placeholder="Ingresa el nombre"
+                        maxlength="50" formControlName="name" [ngClass]="{ 'is-invalid': fc('name') }" />
+                     <div class="invalid-feedback" *ngIf="f('name')?.errors">
+                        <span class="text-danger" *ngIf="f('name')?.errors.required">Campo requerido</span>
+                        <span class="text-danger" *ngIf="f('name')?.errors.minlength">Por lo menos debes escribir 3
+                           caracteres</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputApellido">Apellido: </label>
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">
+                           <i class="fa-solid fa-file-pen"></i>
+                        </div>
+                     </div>
+                     <input type="text" class="form-control" id="inputApellido"
+                        placeholder="Ingresa el apellido" formControlName="lastname" />
+                  </div>
+               </div>
+               <div class="col-4 form-group">
+                  <label for="inputDocumento">Documento: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-arrow-down-1-9"></i></span>
+                     </div>
+                     <input type="number" id="inputDocumento" class="form-control"
+                        placeholder="Ingresa el número de documento" formControlName="document" />
+                  </div>
+               </div>
+               <div class="col-4 form-group">
+                  <label for="inputCorreo">Email: </label>
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">
+                           <i class="fa-solid fa-bars-progress"></i>
+                        </div>
+                     </div>
+                     <input type="email" class="form-control" id="inputCorreo"
+                        placeholder="Ingresa el email" formControlName="email" />
+                  </div>
+               </div>
+               <div class="col-4 form-group">
+                  <label for="inputTelefono">Telefono: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-arrow-down-1-9"></i></span>
+                     </div>
+                     <input type="number" id="inputTelefono" class="form-control"
+                        placeholder="Ingresa el telefono" formControlName="phone" />
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputUsername">Username: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-sack-dollar"></i></span>
+                     </div>
+                     <input type="text" id="inputUsername" class="form-control"
+                        placeholder="Ingresa el username" formControlName="username"/>
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputPassword">Password: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-images"></i></span>
+                     </div>
+                     <input type="password" id="inputPassword" class="form-control"
+                        placeholder="Ingresa el password" formControlName="password" />
+                  </div>
+               </div>
+               <div class="col-12 text-right">
+                  <button type="button" class="btn btn-success" (click)="edit ? updateUser() : saveNewUser()">
+                     {{ edit ? "Editar" : "Crear" }}
+                  </button>
+               </div>
+            </div>
+         </div>
+
+         <!--<div class="col-4">
+            <div class="card text-center border-light">
+               <div class="card-header">
+                  <h3 class="text-center text-danger">Previsualización Comic</h3>
+                  {{ f("nameComic")?.value }}
+               </div>
+               <div class="card-body">
+                  <img [src]="
+                f('url_img')?.value == '' ? imagenXDefecto : f('url_img')?.value
+              " alt="" class="card-img-top" style="max-width: 200px; max-height: 300px" />
+                  <p class="card-text">
+                     <small>
+                        Editorial : {{ f("editorial")?.value | titlecase }} -- Tematica
+                        : {{ f("topic")?.value }}
+                     </small>
+                     <small>
+                        -- Colección : {{ f("collection")?.value | titlecase }} --
+                        Número de páginas : {{ f("pages")?.value }}
+                     </small>
+                     <small>
+                        -- Precio : {{ f("price")?.value | currency }} -- Autores :
+                        {{ f("autors")?.value | titlecase }}
+                     </small>
+                     <small>
+                        -- A Color : {{ f("color")?.value ? "SI" : "NO" }}
+                     </small>
+                     <small>
+                        -- Cantidad : {{ f("amount")?.value }}
+                     </small>
+                  </p>
+                  <a class="btn btn-info btn-sm">Cambiar imagen</a>
+               </div>
+               <div class="card-footer text-muted">
+                  Comic que vas a crear en este momento
+               </div>
+            </div>
+         </div>-->
+      </div>
+   </form>
+</div>

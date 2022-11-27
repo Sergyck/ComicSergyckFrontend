@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/">Market - Comics</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <!-- routerLink remplaza en Angular el href del tag <i> -->
+                <a class="nav-link" routerLink="/comics" routerLinkActive="active"><i class="fas fa-gamepad"></i>Comics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/comics/add" routerLinkActive="active"><i class="fas fa-plus-circle"></i>Add comic</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/users" routerLinkActive="active"><i class="fa-solid fa-user"></i>Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/users/add" routerLinkActive="active"><i class="fa-solid fa-clipboard-check"></i>Add user</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/auth/in" routerLinkActive="active"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/auth/exit" routerLinkActive="active"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+</nav>

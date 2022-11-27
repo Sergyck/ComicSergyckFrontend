@@ -1,0 +1,133 @@
+<div class="col-lg-12" *ngIf="mostrarMensaje">
+  <div class="alert alert-success alert-dismissible fade show">
+    <a type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="cerrarAlert()">x</a>
+    <strong>Exitoso...!</strong> {{ mensaje }}
+  </div>
+</div>
+<div class="col-lg-12">
+    <h2 class="text-center text-danger">GESTIONAR USUARIOS API</h2>
+    <a routerLink="/users/add" class="btn btn-success btn-sm">Crear User</a>
+</div>
+<div class="col-lg-12 mt-3">
+    <table class="table table-bordered table-striped dt-responsive" width="250px">
+        <thead>
+            <tr>
+                <th style="width:10px">#</th>
+                <th>Documento</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>email</th>
+                <th>Telefono</th>
+                <th>Username</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+                <td style="width:10px;">{{ i+1 }}</td>
+                <td>{{ user.document }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+                <td style="width:10px;">{{ user.phone }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.user_status ? 'Activo' : 'Inactivo' }}</td>
+                <td>
+                    <div class="btn-group-vertical">
+                        <button class="btn btn-outline-info btn-sm" [routerLink]="['/users/view', user._id]">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>                    
+                        <button class="btn btn-outline-warning btn-sm" [routerLink]="['/users/edit', user._id]">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteUser(user._id, user)">
+                            <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--<div class="row">
+  <div class="col-lg-12" *ngIf="mostrarMensaje">
+    <div class="alert alert-success alert-dismissible fade show">
+      <a type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="cerrarAlert()">x</a>
+      <strong>Exitoso...!</strong> {{ mensaje }}
+    </div>
+  </div>
+  <div class="col-12">
+    <h2 class="text-center text-danger">GESTIONAR COMIC API</h2>
+    <a href="#" class="btn btn-success btn-md" (click)="navegarCrearComicApi()">Crear Comic</a>
+    <a class="btn btn-success" (click)="navegarCrearComic()">Crear Comic</a>
+  </div>
+  <div class="col-4 mt-3" *ngFor="let comic of comics">
+    <div class="card text-center border border-danger">
+      <div
+        class="card-header text-white d-flex justify-content-between align-items-center"
+      >
+        <h3 class="text-center text-danger">{{ comic.nameComic }}</h3>
+        <button class="btn btn-danger" (click)="deleteComic(comic.id, comic)">
+                <i class="far fa-trash-alt"></i>
+              </button>
+        <a class="btn btn-danger" (click)="deleteComic(comic._id, comic)">
+          <i class="far fa-trash-alt"></i>
+        </a>
+         <a [routerLink]="['/games/edit', game.id]" class="btn btn-info btn-block">Edit game</a>
+      </div>
+      <div class="card-body">
+        <p>
+          <strong
+            [ngClass]="{
+              'text-danger': comic.amount < 1,
+              'text-success': comic.cantidad > 0
+            }"
+            >Stock: {{ comic.amount }}</strong
+          >
+        </p>
+        <img
+          [src]="comic.url_img == '' ? imagenXDefecto : comic.url_img"
+          alt=""
+          class="card-img-top"
+          style="max-width: 200px; max-height: 300px"
+        />
+        <p class="card-text mt-1">
+          <small>
+            Editorial : {{ comic.editorial }} -- Tematica : {{ comic.topic }}
+          </small>
+          <small>
+            -- Colección : {{ comic.collections }} -- Número de páginas :
+            {{ comic.pages }}
+          </small>
+          <small>
+            -- Precio : {{ comic.price }} -- Autores : {{ comic.autors }}
+          </small>
+          <small> -- A Color : {{ comic.color ? "SI" : "NO" }} </small>
+        </p>
+        <div class="btn-group">
+          <a class="btn btn-primary text-white" (click)="navegarVerComicApi(comic.id)">Ver detalle</a>
+          <a class="btn btn-primary btn-sm text-white" (click)="navegarVerComic(comic._id)" 
+            ><i class="fa-solid fa-eye"></i> Ver detalle</a
+          >
+          <a class="btn btn-info ml-2 text-white" (click)="navegarActualizarComicApi(comic.id)">Editar comic</a>
+          <a class="btn btn-warning btn-sm ml-2 text-white" (click)="navegarEditarComic(comic._id)">
+            <i class="fa-solid fa-pen-clip"></i> Editar comic</a>
+          <a class="btn btn-secondary ml-2 text-white" (click)="navegarCompraComicApi(comic.id)">Comprar comic</a>
+          <a class="btn btn-info btn-sm ml-2 text-white"
+            ><i class="fa-solid fa-bag-shopping"></i> Comprar comic</a
+          >
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        Fecha Ultima Venta:
+        {{
+          comic.lastSaleDate == null
+            ? "Este comic aun no se ha vendido"
+            : (comic.lastSaleDate | date)
+        }}
+      </div>
+    </div>
+  </div>
+</div>-->

@@ -1,0 +1,185 @@
+<div class="mt-1">
+   <form [formGroup]="gestionarComicForm">
+      <h1>Gestión Comic - {{ edit ? "Editar" : "Crear" }} Comic</h1>
+      <div class="row">
+         <div class="col-lg-12" *ngIf="mostrarMensaje">
+            <div class="alert alert-success alert-dismissible fade show">
+               <a type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="cerrarAlert()">x</a>
+               <strong>Exitoso...!</strong> Se ha creado el Comic correctamente.
+            </div>
+         </div>
+         <div class="col-md-8 border-light">
+            <div class="row">
+               <div class="col-6 form-group">
+                  <label for="inputNombre">Nombre: </label>
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">
+                           <i class="fa-solid fa-mask"></i>
+                        </div>
+                     </div>
+                     <input type="text" class="form-control" id="inputNombre" placeholder="Ingresa el nombre del comic"
+                        maxlength="50" formControlName="nameComic" [ngClass]="{ 'is-invalid': fc('nameComic') }" />
+                     <div class="invalid-feedback" *ngIf="f('nameComic')?.errors">
+                        <span class="text-danger" *ngIf="f('nameComic')?.errors.required">Campo requerido</span>
+                        <span class="text-danger" *ngIf="f('nameComic')?.errors.minlength">Por lo menos debes escribir 3
+                           caracteres</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputEditorial">Editorial: </label>
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">
+                           <i class="fa-solid fa-file-pen"></i>
+                        </div>
+                     </div>
+                     <input type="text" class="form-control" id="inputEditorial"
+                        placeholder="Ingresa la editorial del comic" formControlName="editorial" />
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputTematica">Tematica: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-list-check"></i></span>
+                     </div>
+                     <select class="form-control" id="inputTematica" formControlName="topic">
+                        <option value="null">Seleciona la tematica del comic</option>
+                        <option value="AVENTURAS">Aventuras</option>
+                        <option value="BELICO">Belico</option>
+                        <option value="DEPORTIVO">Deportivo</option>
+                        <option value="FANTASTICO">Fantastico</option>
+                        <option value="CIENCIA_FICCION">Ciencia ficcion</option>
+                        <option value="HISTORICO">Historico</option>
+                        <option value="HORROR">Horror</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputColeccion">Colección: </label>
+                  <div class="input-group mb-2">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">
+                           <i class="fa-solid fa-bars-progress"></i>
+                        </div>
+                     </div>
+                     <input type="text" class="form-control" id="inputColeccion"
+                        placeholder="Ingresa la colección del comic" formControlName="collections" />
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputNumeroPaginas">Número de paginas: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-arrow-down-1-9"></i></span>
+                     </div>
+                     <input type="number" id="inputNumeroPaginas" class="form-control"
+                        placeholder="Ingresa el número de paginas del comic" formControlName="pages" />
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputPrecio">Precio: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-sack-dollar"></i></span>
+                     </div>
+                     <input type="number" id="inputPrecio" class="form-control"
+                        placeholder="Ingresa el precio del comic" formControlName="price" />
+                     <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputCantidad">Cantidad: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-sack-dollar"></i></span>
+                     </div>
+                     <input type="number" id="inputCantidad" class="form-control"
+                        placeholder="Ingresa la cantidad de comics" formControlName="amount"/>
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputImagenComic">Imagen: </label>
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-images"></i></span>
+                     </div>
+                     <input type="url" id="inputImagenComic" class="form-control"
+                        placeholder="Ingresa la imagen de tu comic" formControlName="url_img" />
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputAutores">Autores: </label>
+                  <div class="input-group">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-spell-check"></i></span>
+                     </div>
+                     <textarea class="form-control" id="inputAutores" aria-label="With textarea"
+                        placeholder="Escribe los autores del comic" formControlName="autors"></textarea>
+                  </div>
+               </div>
+               <div class="col-6 form-group">
+                  <label for="inputColor">El Comic es a color? </label><br />
+                  <div class="custom-control custom-radio custom-control-inline mt-3">
+                     <input type="radio" id="customRadioInline1" class="custom-control-input" formControlName="color"
+                        [value]="true" />
+                     <label class="custom-control-label" for="customRadioInline1">SÍ</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline mt-3">
+                     <input type="radio" id="customRadioInline2" class="custom-control-input" formControlName="color"
+                        [value]="false" />
+                     <label class="custom-control-label" for="customRadioInline2">NO</label>
+                  </div>
+               </div>
+               <div class="col-12 text-right">
+                  <button type="button" class="btn btn-success" (click)="edit ? updateComic() : saveNewComic()">
+                     {{ edit ? "Editar" : "Crear" }}
+                  </button>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-4">
+            <div class="card text-center border-light">
+               <div class="card-header">
+                  <h3 class="text-center text-danger">Previsualización Comic</h3>
+                  {{ f("nameComic")?.value }}
+               </div>
+               <div class="card-body">
+                  <img [src]="
+                f('url_img')?.value == '' ? imagenXDefecto : f('url_img')?.value
+              " alt="" class="card-img-top" style="max-width: 200px; max-height: 300px" />
+                  <p class="card-text">
+                     <small>
+                        Editorial : {{ f("editorial")?.value | titlecase }} -- Tematica
+                        : {{ f("topic")?.value }}
+                     </small>
+                     <small>
+                        -- Colección : {{ f("collection")?.value | titlecase }} --
+                        Número de páginas : {{ f("pages")?.value }}
+                     </small>
+                     <small>
+                        -- Precio : {{ f("price")?.value | currency }} -- Autores :
+                        {{ f("autors")?.value | titlecase }}
+                     </small>
+                     <small>
+                        -- A Color : {{ f("color")?.value ? "SI" : "NO" }}
+                     </small>
+                     <small>
+                        -- Cantidad : {{ f("amount")?.value }}
+                     </small>
+                  </p>
+                  <a class="btn btn-info btn-sm">Cambiar imagen</a>
+               </div>
+               <div class="card-footer text-muted">
+                  Comic que vas a crear en este momento
+               </div>
+            </div>
+         </div>
+      </div>
+   </form>
+</div>
